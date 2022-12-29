@@ -21,21 +21,14 @@ public final class Server {
         MinecraftServer.LOGGER.info("Server: " + host + ":" + port);
     }
 
-    private static final String DEFAULT_HOST = "0.0.0.0";
     private static String getHost() {
-        return System.getProperty("host", DEFAULT_HOST);
+        return "0.0.0.0";
+        // return System.getenv("SERVER_HOST");
     }
 
-    private static final int DEFAULT_PORT = 25565;
     private static int getPort() {
-        final String property = System.getProperty("port", Integer.toString(DEFAULT_PORT));
-        try {
-            return Integer.parseInt(property);
-        }
-        catch (final NullPointerException | NumberFormatException ignored) {
-            MinecraftServer.LOGGER.warn("Could not parse [" + property + "] as a valid port, defaulting to: " + DEFAULT_PORT);
-            return DEFAULT_PORT;
-        }
+        String tmpPort = System.getenv("SERVER_PORT");
+        return Integer.parseInt(tmpPort);
     }
 
 }
