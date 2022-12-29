@@ -8,7 +8,9 @@ public final class Server {
         final String host;
         final int port;
         try {
-            MinecraftServer.init().start(
+            MinecraftServer Server = MinecraftServer.init();
+            
+            Server.start(
                     host = getHost(),
                     port = getPort()
             );
